@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Matching Game - Part III</title>
+        <style>
+            img,
+            div { position:absolute; }
+            
+            #leftSide,
+            #rightSide { height:500px; width:500px; }
+    
+            #rightSide { left: 500px;  border-left: 1px solid black; }
+        </style>
+    </head>
+    <body onload="generateFaces()">
+        <h1>Matching Game</h1>
+        <p>Click on the extra smiling face on the left.</p>
+        <div id="leftSide"></div>
+        <div id="rightSide"></div>
+    </body>
+        <script type="text/javascript">
+            var numberOfFaces = 5;
+            var theLeftSide = document.getElementById("leftSide");
+            var theRightSide = document.getElementById("rightSide");
+
+            function generateFaces() {
+                for( var i = 0; i < numberOfFaces; i++ ) {
+                    var img = document.createElement("img");
+                    img.setAttribute("src", "http://home.cse.ust.hk/~rossiter/mooc/matching_game/smile.png");
+                    img.style.top = Math.floor( Math.random() * 400 ).toString() + "px";
+                    img.style.left = Math.floor( Math.random() * 400 ).toString() + "px";
+                    theLeftSide.appendChild( img );
+                }
+                
+                //Cloning the leftSide and all of its children
+                var leftSideImages = theLeftSide.cloneNode(true);
+                leftSideImages.removeChild( leftSideImages.lastChild );
+                theRightSide.appendChild( leftSideImages );
+            }
+        </script>
+</html>
